@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -25,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
         webView = (WebView)findViewById(R.id.web);
 
         webView.setWebViewClient(webViewClient);
+        webView.setWebChromeClient(new WebChromeClient());
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
+        settings.setAppCacheEnabled(true);
+        settings.setAllowFileAccess(true);
 
         webView.loadUrl(URL);
     }
